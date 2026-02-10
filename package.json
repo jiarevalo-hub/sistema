@@ -7,12 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "sistema": "ts-node sistema.ts"
   },
-  "keywords": [],
+ "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^25.2.2",
-    "ts-node": "^10.9.2",
+  "type": "commonjs",
+  "dependencies": {
+    "prompt-sync": "^4.2.0",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9"
   }
 }
