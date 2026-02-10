@@ -1,5 +1,3 @@
-const promptSync = require("prompt-sync")(); // Importa la libreria de prompt-sync(sirve para leer datos)
-
 interface IEstudiante { // Define la estructura de un estudiante
   id: number;
   nombre: string;
@@ -9,12 +7,6 @@ interface IEstudiante { // Define la estructura de un estudiante
   promedio: number;
 }
 
-interface IResultado<T> { // Sirve para devolver respuestas
-  ok: boolean;
-  mensaje: string;
-  data?: T;
-}
-
 class Estudiante implements IEstudiante { // implements obliga a cumplir con la interfaz de IEstudiante
   id: number; //variables
   nombre: string; //variables
@@ -22,14 +14,7 @@ class Estudiante implements IEstudiante { // implements obliga a cumplir con la 
   carrera: string; //variables
   activo: boolean; //variables
   promedio: number; //variables
-
-  constructor( //se ejecuta cuando se crea un estudiante
-    id: number,
-    nombre: string,
-    edad: number,
-    carrera: string,
-    promedio: number,
-    activo: boolean = true
+    constructor(id: number, nombre: string, edad: number, carrera: string, promedio: number, activo: boolean = true
   ) { // guarda los valores dentro del objeto
     this.id = id;
     this.nombre = nombre;
@@ -38,6 +23,12 @@ class Estudiante implements IEstudiante { // implements obliga a cumplir con la 
     this.promedio = promedio;
     this.activo = activo;
   }
+}
+
+interface IResultado<T> { // Sirve para devolver respuestas
+  ok: boolean;
+  mensaje: string;
+  data?: T;
 }
 
 class SistemaEstudiantes { // Maneja todo el sistema de estudiantes
@@ -121,15 +112,15 @@ function menuInteractivo(): void { //Imprime las opciones y lee las respuestas
 
   do {
     mostrarMenu();
-    opcion = Number(promptSync("Seleccione una opción: ")); 
+    opcion = Number(("Seleccione una opción: ")); 
 
     switch (opcion) {
       case 1:
-        const id = Number(promptSync("ID: "));
-        const nombre = String(promptSync("Nombre: "));
-        const edad = Number(promptSync("Edad: "));
-        const carrera = String(promptSync("Carrera: "));
-        const promedio = Number(promptSync("Promedio: "));
+        const id = Number(("ID: "));
+        const nombre = String("Nombre: ");
+        const edad = Number(("Edad: "));
+        const carrera = String(("Carrera: "));
+        const promedio = Number(("Promedio: "));
         console.log(
           sistema.agregar(
             new Estudiante(id, nombre, edad, carrera, promedio)
@@ -143,19 +134,19 @@ function menuInteractivo(): void { //Imprime las opciones y lee las respuestas
         break;
 
       case 3:
-        const idBuscar = Number(promptSync("ID a buscar: "));
+        const idBuscar = Number(("ID a buscar: "));
         console.log(sistema.buscarPorId(idBuscar));
         break;
 
       case 4:
-        const idAct = Number(promptSync("ID: "));
-        const nuevoProm = Number(promptSync("Nuevo promedio: "));
+        const idAct = Number(("ID: "));
+        const nuevoProm = Number(("Nuevo promedio: "));
         console.log(sistema.actualizarPromedio(idAct, nuevoProm));
         break;
 
       case 5:
-        const idEstado = Number(promptSync("ID: "));
-        const estado = promptSync("Activo? (s/n): ") === "s";
+        const idEstado = Number(("ID: "));
+        const estado = ("Activo? (s/n): " ).toLowerCase() === "s";
         console.log(sistema.cambiarEstado(idEstado, estado));
         break;
 
